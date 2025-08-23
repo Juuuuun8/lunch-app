@@ -1,0 +1,16 @@
+{
+  "name": "lunch-app",
+  "version": "1.0.0",
+  "description": "今日のランチを自動で決めるアプリ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.7"
+  }
+}
