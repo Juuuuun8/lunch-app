@@ -11,11 +11,19 @@ body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: #f0f4f8; /* 背景色 */
     color: #333; /* 文字色 */
-    display: flex;
+    display: flex; /* 中央寄せのためにflexboxを使用 */
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* 画面全体の高さを確保 */
     padding: 20px;
+    min-height: 100vh; /* 画面全体の高さを確保 */
+}
+
+.site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 500px;
 }
 
 /* ==================================== */
@@ -27,8 +35,8 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     padding: 30px;
     text-align: center;
-    max-width: 500px;
     width: 100%;
+    flex-grow: 1; /* 余白を埋めるためにコンテンツ部分を伸縮させる */
 }
 
 /* タイトルと説明文 */
@@ -157,25 +165,12 @@ h2 {
 /* ==================================== */
 /* 6. フッターのデザイン */
 /* ==================================== */
-/* style.css の footer セクション */
 footer {
-    padding: 20px;
     text-align: center;
-    background-color: #f0f0f0;
+    padding: 20px;
     margin-top: 40px;
-    font-size: 0.8rem;
-    color: #555;
-    
-    /* ここから追加 */
-    display: flex;
-    flex-direction: column; /* 要素を縦に並べる */
-    align-items: center; /* 縦並びにした要素を中央に揃える */
-}
-
-.footer-links {
-    margin-bottom: 10px;
-    display: flex; /* 追加 */
-    gap: 20px; /* リンク間のスペースを確保 */
+    border-top: 1px solid #ddd;
+    width: 100%;
 }
 
 .footer-links a {

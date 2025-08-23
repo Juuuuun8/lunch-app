@@ -3,51 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サクメシ - 今日のランチを自動で決める</title>
+    <title>サクメシ! - 今日のランチを自動で決める</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>今日のランチを自動で決めるアプリ</h1>
-        <h2>サクメシ</h2>
-        <p class="description">
-            もうお店選びに迷わない！<br>ボタンを押すだけで、あなたにぴったりのランチを提案します。
-        </p>
+    <div class="site-container">
+        <div class="container">
+            <h1>今日のランチを自動で決めるアプリ</h1>
+            <h2>サクメシ</h2>
+            <p class="description">
+                もうお店選びに迷わない！<br>ボタンを押すだけで、あなたにぴったりの近くのランチを提案します。
+            </p>
 
-        <button id="decideButton">今日のランチを決める</button>
+            <button id="decideButton">今日のランチを決める</button>
 
-        <div id="loading" class="hidden">
-            <p>検索中...</p>
-        </div>
-
-        <div id="result" class="hidden">
-            <h3 id="shopName"></h3>
-            
-            <div class="shop-details">
-                <p id="shopRating"></p>
-                <p id="shopAddress"></p>
-                <div id="shopOpeningHours"></div>
-            </div>
-            
-            <div class="image-container">
-                <img id="shopImage" src="" alt="お店の画像">
+            <div id="loading" class="hidden">
+                <p>検索中...</p>
             </div>
 
-            <a id="mapLink" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る</a> 
+            <div id="result" class="hidden">
+                <h3 id="shopName"></h3>
+                
+                <div class="shop-details">
+                    <p id="shopRating"></p>
+                    <p id="shopAddress"></p>
+                    <div id="shopOpeningHours"></div>
+                </div>
+                
+                <div class="image-container">
+                    <img id="shopImage" src="" alt="お店の画像">
+                </div>
+
+                <a id="mapLink" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る</a>
+            </div>
         </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="terms.html">利用規約</a>
+                <a href="contact.html">お問い合わせ</a>
+            </div>
+            <p>&copy; 2025 サクメシ</p>
+        </footer>
     </div>
-
-    <footer>
-        <div class="footer-links">
-            <a href="privacy.html">プライバシーポリシー</a>
-            <a href="terms.html">利用規約</a>
-            <a href="contact.html">お問い合わせ</a>
-        </div>
-        <p>&copy; 2025 サクメシ</p>
-    </footer>
 
     <script src="app.js"></script>
 </body>
