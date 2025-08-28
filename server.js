@@ -38,13 +38,14 @@ app.post('/api/get-lunch-spot', async (req, res) => {
 
             const placeId = selectedShop.place_id;
 
-            // Place Details APIにリクエストを送信し、詳細情報を取得
-            const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,geometry,photos,rating,opening_hours,website,vicinity&key=${apiKey}`;
+            // Google Maps APIリクエストURL (Place Details)
+            const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,formatted_address,geometry,photo,opening_hours,place_id&language=ja&key=${apiKey}`;
+
             const detailsResponse = await fetch(detailsUrl);
-            const detailsData = await detailsResponse.json();
-            
-            if (detailsData.result) {
-                const detailedShop = detailsData.result;
+            const detailedData = await detailsResponse.json();
+
+            if (detailedData.result) {
+                const detailedShop = detailedData.result;
 
                 const shopName = detailedShop.name;
                 const shopLocation = detailedShop.geometry.location;
@@ -63,7 +64,8 @@ app.post('/api/get-lunch-spot', async (req, res) => {
                     photoUrl: photoUrl,
                     rating: detailedShop.rating || null,
                     address: detailedShop.formatted_address || detailedShop.vicinity,
-                    openingHours: detailedShop.opening_hours ? detailedShop.opening_hours.weekday_text : null
+                    openingHours: detailedShop.opening_hours ? detailedShop.opening_hours.weekday_text : null,
+                    place_id: detailedShop.place_id
                 });
             } else {
                 res.status(404).json({ message: 'お店の詳細情報が見つかりませんでした。' });
@@ -79,5 +81,5 @@ app.post('/api/get-lunch-spot', async (req, res) => {
 
 // サーバーの起動
 app.listen(port, () => {
-    console.log(`サクメシ サーバーが http://localhost:${port} で起動しました。`);
+    console.log(`サーバーが http://localhost:${port} で起動しました。`);
 });
