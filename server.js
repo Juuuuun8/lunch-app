@@ -10,6 +10,15 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
+// リダイレクトミドルウェアを追加
+app.use((req, res, next) => {
+    // ホスト名が'sakumeshi.com'でなければリダイレクト
+    if (req.headers.host === 'sakumeshi-9t8f.onrender.com') {
+        return res.redirect(301, 'https://sakumeshi.com' + req.originalUrl);
+    }
+    next();
+});
+
 // JSONリクエストのボディを解析できるようにする
 app.use(express.json());
 
@@ -18,45 +27,43 @@ app.use(express.static(path.join(__dirname, '')));
 
 // APIエンドポイントの定義
 app.post('/api/get-lunch-spot', async (req, res) => {
+    // ... 既存のコードはそのまま ...
     const { lat, lon, genre } = req.body;
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
     const radius = 500;
     const type = 'restaurant';
     const keyword = genre ? genre : 'restaurant';
 
-    // Google Maps APIリクエストURL (Nearby Search)
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&type=${type}&keyword=${encodeURIComponent(keyword)}&key=${apiKey}`;
 
     try {
         const response = await fetch(url);
         const data = await response.json();
-
+    
         if (data.results && data.results.length > 0) {
-            // ランダムに1店舗を選択
             const randomIndex = Math.floor(Math.random() * data.results.length);
             const selectedShop = data.results[randomIndex];
-
+    
             const placeId = selectedShop.place_id;
-
-            // Google Maps APIリクエストURL (Place Details)
+    
             const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,formatted_address,geometry,photo,opening_hours,place_id&language=ja&key=${apiKey}`;
-
+    
             const detailsResponse = await fetch(detailsUrl);
             const detailedData = await detailsResponse.json();
-
+    
             if (detailedData.result) {
                 const detailedShop = detailedData.result;
-
+    
                 const shopName = detailedShop.name;
                 const shopLocation = detailedShop.geometry.location;
                 let photoUrl = null;
-
+    
                 if (detailedShop.photos && detailedShop.photos.length > 0) {
                     const photoReference = detailedShop.photos[0].photo_reference;
                     const maxWidth = 400;
                     photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photo_reference=${photoReference}&key=${apiKey}`;
                 }
-
+    
                 res.json({
                     name: shopName,
                     lat: shopLocation.lat,
