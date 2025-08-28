@@ -61,7 +61,8 @@ async function fetchLunchSpot(lat, lon, genre) {
             shopNameElement.textContent = data.name;
             shopImageElement.src = data.photoUrl || 'placeholder.jpg';
             shopImageElement.alt = data.name + 'の写真';
-            mapLinkElement.href = `https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lon}`;
+            // 修正箇所: Google マップのリンクを修正
+            mapLinkElement.href = `https://www.google.com/maps/search/?api=1&query=${data.name}&query_place_id=${data.place_id}`;
             
             // 詳細情報を表示
             shopRatingElement.textContent = `評価: ${data.rating ? data.rating + ' / 5' : '評価なし'}`;
