@@ -8,6 +8,7 @@ const shopAddressElement = document.getElementById('shopAddress');
 const shopOpeningHoursElement = document.getElementById('shopOpeningHours');
 const shopImageElement = document.getElementById('shopImage');
 const mapLinkElement = document.getElementById('mapLink');
+const genreSelect = document.getElementById('genre');
 
 // イベントリスナー: ボタンがクリックされた時の処理
 decideButton.addEventListener('click', () => {
@@ -23,7 +24,8 @@ decideButton.addEventListener('click', () => {
                 // 位置情報取得成功時の処理
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                fetchLunchSpot(lat, lon);
+                const genre = genreSelect.value;
+                fetchLunchSpot(lat, lon, genre);
             },
             (error) => {
                 // 位置情報取得失敗時の処理
@@ -38,14 +40,14 @@ decideButton.addEventListener('click', () => {
 });
 
 // バックエンドAPIを呼び出す関数
-async function fetchLunchSpot(lat, lon) {
+async function fetchLunchSpot(lat, lon, genre) {
     try {
         const response = await fetch('/api/get-lunch-spot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ lat, lon }),
+            body: JSON.stringify({ lat, lon, genre }),
         });
 
         if (!response.ok) {
@@ -59,7 +61,7 @@ async function fetchLunchSpot(lat, lon) {
             shopNameElement.textContent = data.name;
             shopImageElement.src = data.photoUrl || 'placeholder.jpg';
             shopImageElement.alt = data.name + 'の写真';
-            mapLinkElement.href = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lon}&destination=${data.lat},${data.lon}&travelmode=walking`;
+            mapLinkElement.href = `https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lon}`;
             
             // 詳細情報を表示
             shopRatingElement.textContent = `評価: ${data.rating ? data.rating + ' / 5' : '評価なし'}`;
@@ -94,7 +96,7 @@ async function fetchLunchSpot(lat, lon) {
 // エラーメッセージを表示する関数
 function displayError(message) {
     shopNameElement.textContent = 'エラー';
-    shopImageElement.src = 'error.jpg'; // エラー表示用の画像
+    shopImageElement.src = 'error.jpg';
     shopImageElement.alt = 'エラー';
     
     // 詳細情報を非表示にするか、エラー用に書き換える

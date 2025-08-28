@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サクメシ! - もう迷わない。今日のランチをランダムで決めるアプリ</title>
+    <title>サクメシ！ - もう迷わない。今日のランチをランダムで決めるアプリ</title>
     <meta name="description" content="今日のランチ選びに迷っていませんか？サクメシは現在地からぴったりの飲食店をランダムに自動提案。最短30秒で決定！">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
-<!-- Google tag (gtag.js) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SH51G8XBGS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,12 +23,24 @@
     <div class="site-container">
         <div class="container">
             <h1>今日のランチをサクッと決めるアプリ</h1>
-            <h2>サクメシ！もうランチ選びで迷わない</h2>
             <p class="description">
-                ボタンを押すだけで、あなたにぴったりの近くのランチを提案します。
-                お店選びにかかる時間をゼロに。新たな発見があるかもしれません。
+                ボタンを押すだけで、あなたにぴったりの近くのランチを提案します。<br>
+                お店選びにかかる時間をゼロに。
             </p>
-
+            <div class="genre-selection">
+                <label for="genre">ジャンルを選択:</label>
+                <select id="genre">
+                    <option value="">おまかせ</option>
+                    <option value="ramen">ラーメン</option>
+                    <option value="sushi">寿司</option>
+                    <option value="curry">カレー</option>
+                    <option value="cafe">カフェ</option>
+                    <option value="izakaya">居酒屋</option>
+                    <option value="yakitori">焼き鳥</option>
+                    <option value="gyoza">餃子</option>
+                    <option value="hamburg">ハンバーグ</option>
+                </select>
+            </div>
             <button id="decideButton">今日のランチを決める</button>
 
             <div id="loading" class="hidden">
@@ -37,7 +49,6 @@
 
             <div id="result" class="hidden">
                 <h3 id="shopName"></h3>
-                
                 <div class="shop-details">
                     <p id="shopRating"></p>
                     <p id="shopAddress"></p>
@@ -50,33 +61,16 @@
 
                 <a id="mapLink" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る</a>
             </div>
-
-            <section class="features">
-                <h3>サクメシが選ばれる3つの理由</h3>
-                <ul>
-                    <li>
-                        <h4>1. 素早い決定</h4>
-                        <p>現在地情報から最適な店を瞬時にピックアップ。忙しいランチタイムを有効活用できます。</p>
-                    </li>
-                    <li>
-                        <h4>2. 新しい発見</h4>
-                        <p>普段行かないお店と出会えるかも。ランダムだからこそ、食の選択肢が広がります。</p>
-                    </li>
-                    <li>
-                        <h4>3. 信頼性の高い情報</h4>
-                        <p>Google マップから取得した最新の店舗情報（評価、営業時間）を表示するので安心です。</p>
-                    </li>
-                </ul>
-            </section>
         </div>
 
         <footer>
             <div class="footer-links">
+                <a href="about.html">サクメシ！とは</a>
                 <a href="privacy.html">プライバシーポリシー</a>
                 <a href="terms.html">利用規約</a>
                 <a href="contact.html">お問い合わせ</a>
             </div>
-            <p>&copy; 2025 サクメシ</p>
+            <p>© 2025 サクメシ</p>
         </footer>
     </div>
 

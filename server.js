@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
+const fetch = require('node-fetch');
 
 // 環境変数の読み込み
 dotenv.config();
@@ -17,13 +18,14 @@ app.use(express.static(path.join(__dirname, '')));
 
 // APIエンドポイントの定義
 app.post('/api/get-lunch-spot', async (req, res) => {
-    const { lat, lon } = req.body;
+    const { lat, lon, genre } = req.body;
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
     const radius = 500;
     const type = 'restaurant';
+    const keyword = genre ? genre : 'restaurant';
 
     // Google Maps APIリクエストURL (Nearby Search)
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&type=${type}&key=${apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&type=${type}&keyword=${encodeURIComponent(keyword)}&key=${apiKey}`;
 
     try {
         const response = await fetch(url);

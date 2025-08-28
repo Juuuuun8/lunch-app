@@ -73,6 +73,7 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
     width: 100%;
+    margin-top: 20px; /* ジャンル選択との間にスペースを追加 */
 }
 
 #decideButton:hover {
@@ -191,7 +192,111 @@ footer p {
 }
 
 /* ==================================== */
-/* 7. スマートフォン向けの調整 */
+/* 7. 新しい要素のデザイン */
+/* ==================================== */
+.genre-selection {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.genre-selection label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.genre-selection select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* お問い合わせページのボタン */
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.email-button {
+    background-color: #f2f2f2;
+    color: #555;
+}
+
+.email-button:hover {
+    background-color: #e0e0e0;
+}
+
+.x-button {
+    background-color: #000;
+    color: white;
+}
+
+.x-button:hover {
+    background-color: #222;
+}
+
+.contact-button .icon {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.social-links {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #ddd;
+}
+
+.social-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.social-links p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #4285F4;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.social-link:hover {
+    background-color: #3c78d8;
+}
+
+.social-link + .social-link {
+    margin-left: 10px;
+}
+
+/* ==================================== */
+/* 8. スマートフォン向けの調整 */
 /* ==================================== */
 @media (max-width: 500px) {
     .container {
